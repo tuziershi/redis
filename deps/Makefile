@@ -110,6 +110,9 @@ ifneq ($(DEB_HOST_GNU_TYPE),)
 JEMALLOC_CONFIGURE_OPTS += --host=$(DEB_HOST_GNU_TYPE)
 endif
 
+JEMALLOC_CONFIGURE_OPTS += --with-lg-vaddr=48
+
+
 jemalloc: .make-prerequisites
 	@printf '%b %b\n' $(MAKECOLOR)MAKE$(ENDCOLOR) $(BINCOLOR)$@$(ENDCOLOR)
 	cd jemalloc && ./configure --disable-cxx --with-version=5.3.0-0-g0 --with-lg-quantum=3 --disable-cache-oblivious --with-jemalloc-prefix=je_ CFLAGS="$(JEMALLOC_CFLAGS)" LDFLAGS="$(JEMALLOC_LDFLAGS)" $(JEMALLOC_CONFIGURE_OPTS)
